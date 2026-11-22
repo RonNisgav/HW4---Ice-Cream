@@ -48,6 +48,15 @@ class IceWindow(QWidget):
             self.temperatures.append(float(parts[0]))
             self.profits.append(float(parts[1]))
 
+        self.draw_graph()
+
+
+    def draw_graph(self):
+        self.axes.clear()
+        self.axes.scatter(self.temperatures, self.profits)
+        self.canvas.draw()
+
+
 if __name__ == '__main__':
     app = QApplication()
     window = IceWindow()
