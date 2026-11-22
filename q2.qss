@@ -1,0 +1,29 @@
+QWidget {
+    background-color: #f3f6fb;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+QPushButton {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+QPushButton:hover {
+    background-color: #1d4ed8;
+}
+
+QPushButton:pressed {
+    background-color: #1e40af;
+}
+
+QToolBar, QToolButton {
+    background-color: #ffffff;
+    border: none;
+}
+
+QToolButton:hover {
+    background-color: #eaf1fa;
+}
