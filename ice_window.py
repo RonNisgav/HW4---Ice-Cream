@@ -53,7 +53,15 @@ class IceWindow(QWidget):
 
     def draw_graph(self):
         self.axes.clear()
-        self.axes.scatter(self.temperatures, self.profits)
+        self.axes.scatter(self.temperatures, self.profits, s=1)
+
+        self.axes.spines['top'].set_visible(False)
+        self.axes.spines['right'].set_visible(False)
+
+        self.axes.set_title('Ice Cream Profits vs Temperature')
+        self.axes.set_xlabel('Temperature')
+        self.axes.set_ylabel('Profit')
+
         self.canvas.draw()
 
 
