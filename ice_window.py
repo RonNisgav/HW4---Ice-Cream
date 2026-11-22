@@ -18,8 +18,21 @@ class IceWindow(QWidget):
         self.load_button.clicked.connect(self.load_method)
 
     def load_method(self):
-        pass
+        result = QFileDialog.getOpenFileName(self, 'Select data file', '', 'CSV files (*.csv)')
+        filename = result[0]
+        if not filename: return
 
+        self.selected_file = filename
+        self.temperatures = []
+        self.profits = []
+
+        with open(self.selected_file) as f:
+            lines = f.readlines()
+
+        for line in lines[1:]:
+            parts = line.strip().split(',')
+            self.temperatures.append(float(parts[0]))
+            self.profits.append(float(parts[1]))
 
 if __name__ == '__main__':
     app = QApplication()
