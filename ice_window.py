@@ -59,6 +59,8 @@ class IceWindow(QWidget):
 
 if __name__ == '__main__':
     app = QApplication()
+    with open('q2.qss') as f:
+        app.setStyleSheet(f.read())
     window = IceWindow()
     window.show()
     app.exec()
