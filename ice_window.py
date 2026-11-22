@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QFileDialog
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolbar2QT
 from matplotlib.figure import Figure
-import numpy
+import numpy as np
 
 
 class IceWindow(QWidget):
@@ -55,6 +55,13 @@ class IceWindow(QWidget):
         self.axes.clear()
         self.axes.scatter(self.temperatures, self.profits, s=1)
 
+        if len(self.temperatures) > 1:
+            slope, intercept = np.polyfit(self.temperatures, self.profits, 1)
+            x_line = np.array([min(self.temperatures), max(self.temperatures)])
+            y_line = slope * x_line + intercept
+            self.axes.plot(x_line, y_line, color='red', label=f'y = {slope:.2f}x + {intercept:.2f}')
+            self.axes.legend()
+
         self.axes.spines['top'].set_visible(False)
         self.axes.spines['right'].set_visible(False)
 
@@ -63,7 +70,6 @@ class IceWindow(QWidget):
         self.axes.set_ylabel('Profit')
 
         self.canvas.draw()
-
 
 if __name__ == '__main__':
     app = QApplication()
